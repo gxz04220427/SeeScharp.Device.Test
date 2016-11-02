@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeeScharp.Device.Test.Runner
+namespace SeeScharp.Device.Test.Core.Device.PCI
 {
-    class Program
+    public abstract class PCITest:TestDevice
     {
-        static void Main(string[] args)
-        {
 
-        }
     }
 }

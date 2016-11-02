@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeeScharp.Device.Test.Runner
+namespace SeeScharp.Device.Test.Core.Task.Analog.AO
 {
-    class Program
+    public interface IAOTestTask:ITestTask
     {
-        static void Main(string[] args)
-        {
-
-        }
+        void AOTest();
     }
 }

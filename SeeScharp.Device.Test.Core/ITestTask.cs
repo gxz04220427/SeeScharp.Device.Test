@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeeScharp.Device.Test.Runner
+namespace SeeScharp.Device.Test.Core
 {
-    class Program
+    public interface ITestTask
     {
-        static void Main(string[] args)
-        {
-
-        }
     }
 }

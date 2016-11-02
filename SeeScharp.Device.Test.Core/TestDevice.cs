@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SeeScharp.Device.Test.Core
 {
-    class Program
+    public abstract class TestDevice
     {
-        static void Main(string[] args)
-        {
-        }
+        public abstract void Initial();
+        public abstract void Run();
+        public abstract void Flush();
     }
 }
