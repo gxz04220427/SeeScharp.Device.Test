@@ -7,13 +7,16 @@ using SeeScharp.Device.Test.Core.Task.Analog.AI;
 using SeeScharp.Device.Test.Core.Task.Analog.AO;
 using SeeSharpTools;
 using JYPXI62205;
+using NLog;
 using RigolDG1032ZUSB;
 using TekDPO2024BUSB;
+using System.Threading;
 
 namespace SeeScharp.Device.Test.Core.Device.PCI
 {
     public class PCI62205Test:PCITest,IAITestTask,IAOTestTask
     {
+        private Logger logger = LogManager.GetCurrentClassLogger();
         public SignalGenerator signalGenerator { get; set; }
          
         public override void Initial()
@@ -24,25 +27,28 @@ namespace SeeScharp.Device.Test.Core.Device.PCI
                 Rigol_DG1032Z_USB FWG = new Rigol_DG1032Z_USB();
                 JYPXI62205AITask AITask = new JYPXI62205AITask(0);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-                return UUT_ErrorCode.Instrumenterror;
+                logger.Error(ex);
+                throw ex;
             }
         }
 
         public override void Run()
         {
-            throw new NotImplementedException();
+            this.AItest();
+            this.AOTest();
         }
 
         public override void Flush()
         {
-            throw new NotImplementedException();
+            logger.Info("结束测试，清除资源");
         }
 
         public void AItest()
         {
-            throw new NotImplementedException();
+            this.AI_SingleMode_SingleChannel(0);
+
         }
 
         public void AOTest()
@@ -58,7 +64,7 @@ namespace SeeScharp.Device.Test.Core.Device.PCI
         /// </summary>
         /// <param name="boardNum">板卡号</param>
         /// <returns>验证状态</returns>
-        public static bool AI_SingleMode_SingleChannel(int boardNum)
+        public bool AI_SingleMode_SingleChannel(int boardNum)
         {
             Rigol_DG1032Z_USB FWG = new Rigol_DG1032Z_USB();
             JYPXI62205AITask AITask = new JYPXI62205AITask(boardNum);
@@ -1181,5 +1187,4 @@ namespace SeeScharp.Device.Test.Core.Device.PCI
         };
         #endregion
     }
-}
 }
